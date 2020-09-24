@@ -68,6 +68,7 @@ extension SocketEngineWebsocket {
 
     /// Delegate method for when a message is received.
     public func websocketDidReceiveMessage(socket: WebSocket, text: String) {
+//        print(" *** ", self, " File: \(#file) Function: \(#function), line: \(#line)")
         parseEngineMessage(text, fromPolling: false)
     }
 

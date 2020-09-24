@@ -530,6 +530,8 @@ open class SocketIOClient : NSObject, SocketIOClientSpec, SocketEngineClient, So
     ///
     /// - parameter msg: The message that needs parsing.
     public func parseEngineMessage(_ msg: String) {
+//        print(" *** ", self.description, " File: \(#file) Function: \(#function), line: \(#line)")
+        
         DefaultSocketLogger.Logger.log("Should parse message: %@", type: "SocketIOClient", args: msg)
 
         handleQueue.async { self.parseSocketMessage(msg) }

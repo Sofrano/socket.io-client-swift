@@ -215,8 +215,12 @@ extension SocketEnginePollable {
 
         while reader.hasNext {
             if let n = Int(reader.readUntilOccurence(of: ":")) {
+//                print(" *** 1 ", self, " File: \(#file) Function: \(#function), line: \(#line)")
+
                 parseEngineMessage(reader.read(count: n), fromPolling: true)
             } else {
+//                print(" *** 2 ", self, " File: \(#file) Function: \(#function), line: \(#line)")
+
                 parseEngineMessage(str, fromPolling: true)
                 break
             }

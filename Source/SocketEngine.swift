@@ -225,7 +225,7 @@ public final class SocketEngine : NSObject, URLSessionDelegate, SocketEnginePoll
 
     private func handleBase64(message: String) {
         // binary in base64 string
-        let noPrefix = message[message.index(message.startIndex, offsetBy: 2)..<message.endIndex]
+        let noPrefix = String(message[message.index(message.startIndex, offsetBy: 2)..<message.endIndex])
 
         if let data = NSData(base64Encoded: noPrefix, options: .ignoreUnknownCharacters) {
             client?.parseEngineBinaryData(data as Data)
@@ -438,6 +438,7 @@ public final class SocketEngine : NSObject, URLSessionDelegate, SocketEnginePoll
     }
 
     private func handleMessage(_ message: String) {
+//        print(" *** ", self.description, " File: \(#file) Function: \(#function), line: \(#line)")
         client?.parseEngineMessage(message)
     }
 
@@ -512,6 +513,8 @@ public final class SocketEngine : NSObject, URLSessionDelegate, SocketEnginePoll
     /// - parameter fromPolling: Whether this message is from long-polling.
     ///                          If `true` we might have to fix utf8 encoding.
     public func parseEngineMessage(_ message: String, fromPolling: Bool) {
+//        print(" *** ", self.description, " File: \(#file) Function: \(#function), line: \(#line)")
+
         DefaultSocketLogger.Logger.log("Got message: %@", type: logType, args: message)
 
         let reader = SocketStringReader(message: message)
